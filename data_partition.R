@@ -11,6 +11,7 @@ groupKFold #splits the data based on a grouping factor.
 install.packages("e1071")
 library(e1071)
 
+
 # Focus on createDataPartition and createFolds:
 
 # I ) Data Partition: random split % for training and testing
@@ -34,17 +35,20 @@ print(predict1)
 
 # More info on model tuning: https://topepo.github.io/caret/model-training-and-tuning.html
 
-
+#Example:
 #Using airquality data instead of iris
+library(caret)
+# Split:
 set.seed(123)
 ind2 <- createDataPartition(y=DataImputeBag$Ozone, p=0.6, list=F)
 training1 <- DataImputeBag[ind2,]
 testing1 <- DataImputeBag[-ind2,]
-
+#train:
 fitControl1 <- trainControl(method="cv",number=10)
 model1 <- train(Ozone~Solar.R+Wind+Temp,data=training1,
                 trControl = fitControl1,method="lm")
 print(model1)
+#Use model for prediction:
 predict_iris <- predict(model1,testing1)
 print(predict_iris)
 

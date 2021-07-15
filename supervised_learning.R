@@ -1,4 +1,4 @@
-#Supervised Learning
+#Supervised Learning_ PART 1: CONTINOUS OUTPUT
 rm(list=ls())
 
 library(caret)
@@ -15,6 +15,7 @@ indT <- createDataPartition(y=airquality_imp$Ozone,p=0.6,list=FALSE)
 training <- airquality_imp[indT,]
 testing  <- airquality_imp[-indT,]
 
+##CONTINOUS OUTPUT : 
 # Single Linear Regression model
 ModFit <- train(Ozone~Temp,data=training,
                 preProcess=c("center","scale"),
@@ -53,7 +54,9 @@ prediction_poly <- predict(modFit_poly,testing)
 cor.test(prediction_poly,testing$Ozone)
 postResample(prediction_poly,testing$Ozone)
 
-#PCR 
+#PCR (Principal component regression):
+#PCR is skillful when data has lots of highly correlated predictors
+
 ModFit_PCR <- train(Ozone~Solar.R+Wind+Temp, data=training,
                     preProcess=c("center","scale"),
                     method="pcr")
