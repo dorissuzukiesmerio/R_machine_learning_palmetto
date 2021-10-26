@@ -1,3 +1,4 @@
-# Machine Learning in R:
+# Machine Learning in R
 
-> Implementation of different algorithms
+Implementation of different algorithms:
+
